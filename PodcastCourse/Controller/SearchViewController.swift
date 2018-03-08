@@ -51,19 +51,18 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let text = searchText.replacingOccurrences(of: " ", with: "+")
-        let url = "https://itunes.apple.com/search?entity=podcast&term=\(text)"
+        let url = "https://itunes.apple.com/search"
+        let parameters = ["entity":"podcast", "term": searchText]
 
-        Alamofire.request(url).responseData { (dataReponse) in
-
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (dataReponse) in
+           
             if let error = dataReponse.error{
                 print(error)
             }
-
+            
             guard let data = dataReponse.data else {return}
-            //print(String(data: data, encoding: String.Encoding.utf8) ?? "")
             self.convertJson(data)
-        }        
+        }
     }
     
     func convertJson(_ data: Data){
