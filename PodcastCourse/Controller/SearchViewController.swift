@@ -11,7 +11,7 @@ import Alamofire
 
 class SearchViewController: UITableViewController, UISearchBarDelegate {
     
-    let podcasts = [Podcast(name: "Some Podcast Title 1", artistName: "User Name 1"), Podcast(name: "Some Podcast Title 2", artistName: "User Name 2")]
+    var podcasts = [Podcast]()
     
     let cellID = "cellID"
     let searchController = UISearchController(searchResultsController: nil)
@@ -34,8 +34,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        cell.textLabel?.text = "\(podcasts[indexPath.item].name)\n\(podcasts[indexPath.item].artistName)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)        
+        cell.textLabel?.text = "\(podcasts[indexPath.item].trackName ?? "")\n\(podcasts[indexPath.item].artistName ?? "")"
         cell.textLabel?.numberOfLines = -1
         cell.imageView?.image = #imageLiteral(resourceName: "icon")
         return cell
@@ -61,8 +61,18 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             }
 
             guard let data = dataReponse.data else {return}
-            print(String(data: data, encoding: String.Encoding.utf8) ?? "")
+            //print(String(data: data, encoding: String.Encoding.utf8) ?? "")
+            self.convertJson(data)
+        }        
+    }
+    
+    func convertJson(_ data: Data){
+        do{
+            let searchResult = try JSONDecoder().decode(SearchResults.self, from: data)
+            podcasts = searchResult.results
+            self.tableView.reloadData()
+        }catch let error{
+            print(error)
         }
-        
-    }    
+    }
 }
