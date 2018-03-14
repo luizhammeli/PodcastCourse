@@ -46,7 +46,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
-        searchController.definesPresentationContext = true
+        self.definesPresentationContext = true
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -59,5 +59,30 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 132
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let episodesViewController = EpisodesViewController()
+        episodesViewController.podcast = podcasts[indexPath.item]
+        self.navigationController?.pushViewController(episodesViewController, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Please enter a Search Term"
+        label.textColor = UIColor.purple
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
 
+        return label
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard let text = searchController.searchBar.text else {return 0}
+        return (podcasts.count > 0 || text.isEmpty) ? 0 : 250
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.podcasts.removeAll()
+        self.tableView.reloadData()
+    }
 }

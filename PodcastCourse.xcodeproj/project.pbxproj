@@ -20,6 +20,7 @@
 		73291927204EE5280024BB42 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73291926204EE5280024BB42 /* MainTabBarController.swift */; };
 		7355CEE4205009CF00198C3E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355CEE3205009CF00198C3E /* SearchViewController.swift */; };
 		7355CEE820500A2A00198C3E /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355CEE720500A2A00198C3E /* Podcast.swift */; };
+		73AC98C82059532800DC162E /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AC98C72059532800DC162E /* EpisodesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		73291926204EE5280024BB42 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7355CEE3205009CF00198C3E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7355CEE720500A2A00198C3E /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		73AC98C72059532800DC162E /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
 		B16AEA3DBA0139A84D184E3F /* Pods-PodcastCourse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastCourse.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastCourse/Pods-PodcastCourse.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +121,7 @@
 				73291916204EE4D90024BB42 /* ViewController.swift */,
 				73291926204EE5280024BB42 /* MainTabBarController.swift */,
 				7355CEE3205009CF00198C3E /* SearchViewController.swift */,
+				73AC98C72059532800DC162E /* EpisodesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -229,10 +232,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PodcastCourse/Pods-PodcastCourse-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -282,6 +287,7 @@
 				73291917204EE4D90024BB42 /* ViewController.swift in Sources */,
 				73291915204EE4D90024BB42 /* AppDelegate.swift in Sources */,
 				387FBFDF205567FB00312985 /* PodcastCell.swift in Sources */,
+				73AC98C82059532800DC162E /* EpisodesViewController.swift in Sources */,
 				7355CEE4205009CF00198C3E /* SearchViewController.swift in Sources */,
 				73291927204EE5280024BB42 /* MainTabBarController.swift in Sources */,
 				38B039692050BF5A0040E0C1 /* SearchResult.swift in Sources */,
