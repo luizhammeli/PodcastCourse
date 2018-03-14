@@ -26,7 +26,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     fileprivate func setUpTableView(){
         self.tableView.tableFooterView = UIView()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        let nib = UINib(nibName: "PodcastCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: cellID)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,10 +35,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)        
-        cell.textLabel?.text = "\(podcasts[indexPath.item].trackName ?? "")\n\(podcasts[indexPath.item].artistName ?? "")"
-        cell.textLabel?.numberOfLines = -1
-        cell.imageView?.image = #imageLiteral(resourceName: "icon")
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! PodcastCell
+        cell.podcast = podcasts[indexPath.item]        
         return cell
     }
     
@@ -51,27 +50,14 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let url = "https://itunes.apple.com/search"
-        let parameters = ["entity":"podcast", "term": searchText]
-
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (dataReponse) in
-           
-            if let error = dataReponse.error{
-                print(error)
-            }
-            
-            guard let data = dataReponse.data else {return}
-            self.convertJson(data)
+        ApiService.shared.fetchPodcasts(searchText) { (results) in
+            self.podcasts = results
+            self.tableView.reloadData()
         }
     }
     
-    func convertJson(_ data: Data){
-        do{
-            let searchResult = try JSONDecoder().decode(SearchResults.self, from: data)
-            podcasts = searchResult.results
-            self.tableView.reloadData()
-        }catch let error{
-            print(error)
-        }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 132
     }
+
 }

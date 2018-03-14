@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="145" id="ZfX-Ma-caU" customClass="PodcastCell" customModule="PodcastCourse" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="452" height="145"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZfX-Ma-caU" id="GKC-C7-DrC">
+                <rect key="frame" x="0.0" y="0.0" width="452" height="144.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="Fns-4O-svd">
+                        <rect key="frame" x="20" y="19" width="100" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="CeM-uT-Vse"/>
+                            <constraint firstAttribute="width" constant="100" id="swN-WC-Km0"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="7zi-Fn-I70">
+                        <rect key="frame" x="132" y="40" width="315" height="58.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evS-pA-Uqc">
+                                <rect key="frame" x="0.0" y="0.0" width="315" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fe4-Tr-ThI">
+                                <rect key="frame" x="0.0" y="22.5" width="315" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bk4-pS-Bsn">
+                                <rect key="frame" x="0.0" y="42.5" width="315" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Fns-4O-svd" firstAttribute="top" secondItem="GKC-C7-DrC" secondAttribute="topMargin" constant="8" id="GPu-nb-CfF"/>
+                    <constraint firstAttribute="trailing" secondItem="7zi-Fn-I70" secondAttribute="trailing" constant="5" id="Pmu-qd-1zd"/>
+                    <constraint firstItem="7zi-Fn-I70" firstAttribute="leading" secondItem="Fns-4O-svd" secondAttribute="trailing" constant="12" id="fj4-zk-7aN"/>
+                    <constraint firstItem="Fns-4O-svd" firstAttribute="leading" secondItem="GKC-C7-DrC" secondAttribute="leadingMargin" id="pqc-bU-gZl"/>
+                    <constraint firstItem="7zi-Fn-I70" firstAttribute="centerY" secondItem="Fns-4O-svd" secondAttribute="centerY" id="uIg-nH-if4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="artistName" destination="Fe4-Tr-ThI" id="82r-jX-vy2"/>
+                <outlet property="episodeCount" destination="bk4-pS-Bsn" id="TsG-Ml-gaO"/>
+                <outlet property="podcastImage" destination="Fns-4O-svd" id="qLM-La-zMn"/>
+                <outlet property="trackName" destination="evS-pA-Uqc" id="zrJ-Aw-y5d"/>
+            </connections>
+            <point key="canvasLocation" x="-110" y="-24.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon" width="60" height="60"/>
+    </resources>
+</document>
