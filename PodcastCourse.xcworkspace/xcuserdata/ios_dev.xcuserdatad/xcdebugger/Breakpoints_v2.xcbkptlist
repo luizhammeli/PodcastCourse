@@ -9,14 +9,78 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PodcastCourse/View/PodcastCell.swift"
-            timestampString = "542725381.641654"
+            filePath = "PodcastCourse/Controller/EpisodesViewController.swift"
+            timestampString = "542910775.116127"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "podcast"
-            landmarkType = "24">
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "fetchEpisodes()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PodcastCourse/Controller/EpisodesViewController.swift"
+            timestampString = "542910775.1164989"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "fetchEpisodes()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodcastCourse.EpisodesViewController.fetchEpisodes() -&gt; ()"
+                  moduleName = "PodcastCourse"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ios_dev/Documents/Estudo/PodcastCourse/PodcastCourse/Controller/EpisodesViewController.swift"
+                  timestampString = "542910775.249342"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "1208">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (FeedKit.Result) -&gt; () in PodcastCourse.EpisodesViewController.fetchEpisodes() -&gt; ()"
+                  moduleName = "PodcastCourse"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ios_dev/Documents/Estudo/PodcastCourse/PodcastCourse/Controller/EpisodesViewController.swift"
+                  timestampString = "542910775.251684"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "18">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PodcastCourse/Controller/EpisodesViewController.swift"
+            timestampString = "542910775.116688"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "fetchEpisodes()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

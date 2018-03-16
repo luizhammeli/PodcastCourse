@@ -8,12 +8,12 @@
 //
 
 import UIKit
+import FeedKit
 
 class EpisodesViewController: UITableViewController {
     
     let cellID = "cellID"
-    
-    let episodes = ["ep1", "ep2", "ep2"]
+    let episodes = [Episode(title: "First Episode"), Episode(title: "Second Episode"), Episode(title: "Third Episode")]
     
     var podcast: Podcast?{
         didSet{
@@ -24,6 +24,24 @@ class EpisodesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
+        fetchEpisodes()
+    }
+    
+    func fetchEpisodes(){
+        guard let stringUrl = podcast?.feedUrl else {return}
+        guard let url = URL(string: stringUrl) else {return}
+        let parser = FeedParser(URL: url)
+        parser?.parseAsync(result: { (result) in
+            print(result.isSuccess)
+            switch result {
+                case let .rss(feed):
+                    feed.items?.forEach({ (item) in })
+                    break
+                case .atom(_): break
+                case .json(_): break
+                case .failure(_): break
+            }
+        })
     }
     
     func setUpTableView(){
@@ -37,7 +55,7 @@ class EpisodesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        cell.textLabel?.text = episodes[indexPath.item]
+        cell.textLabel?.text = episodes[indexPath.item].title
         return cell
     }
 }
