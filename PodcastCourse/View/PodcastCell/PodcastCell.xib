@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="145" id="ZfX-Ma-caU" customClass="PodcastCell" customModule="PodcastCourse" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="452" height="145"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="159" id="ZfX-Ma-caU" customClass="PodcastCell" customModule="PodcastCourse" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="452" height="159"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZfX-Ma-caU" id="GKC-C7-DrC">
-                <rect key="frame" x="0.0" y="0.0" width="452" height="144.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="452" height="158.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="Fns-4O-svd">
@@ -64,7 +64,7 @@
                 <outlet property="podcastImage" destination="Fns-4O-svd" id="qLM-La-zMn"/>
                 <outlet property="trackName" destination="evS-pA-Uqc" id="zrJ-Aw-y5d"/>
             </connections>
-            <point key="canvasLocation" x="-110" y="-24.5"/>
+            <point key="canvasLocation" x="-110" y="-17.5"/>
         </tableViewCell>
     </objects>
     <resources>

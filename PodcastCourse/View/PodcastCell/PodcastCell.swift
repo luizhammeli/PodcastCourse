@@ -22,8 +22,7 @@ class PodcastCell: UITableViewCell {
             trackName.text = podcast.trackName
             artistName.text = podcast.artistName
             let episode = trackCount > 1 ? "episodes" : "episode"
-            episodeCount.text = "\(trackCount) \(episode)"
-            
+            episodeCount.text = "\(trackCount) \(episode)"            
             guard let url = URL(string: imageUrl) else {return}
             podcastImage.sd_setImage(with: url, completed: nil)
         }

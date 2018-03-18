@@ -13,7 +13,7 @@ import FeedKit
 class EpisodesViewController: UITableViewController {
     
     let cellID = "cellID"
-    let episodes = [Episode(title: "First Episode"), Episode(title: "Second Episode"), Episode(title: "Third Episode")]
+    var episodes = [Episode]()
     
     var podcast: Podcast?{
         didSet{
@@ -29,24 +29,35 @@ class EpisodesViewController: UITableViewController {
     
     func fetchEpisodes(){
         guard let stringUrl = podcast?.feedUrl else {return}
-        guard let url = URL(string: stringUrl) else {return}
+        let editedSring = stringUrl.replacingOccurrences(of: "http:", with: "https:")
+        guard let url = URL(string: editedSring) else {return}
         let parser = FeedParser(URL: url)
         parser?.parseAsync(result: { (result) in
-            print(result.isSuccess)
             switch result {
                 case let .rss(feed):
-                    feed.items?.forEach({ (item) in })
+                    feed.items?.forEach({ (item) in
+                        var episode = Episode(item)
+                        if episode.imageUrl.isEmpty{
+                            guard let feedImage = feed.iTunes?.iTunesImage?.attributes?.href else {return}
+                            episode.imageUrl = feedImage
+                        }
+                        self.episodes.append(episode)
+                    })
                     break
-                case .atom(_): break
-                case .json(_): break
                 case .failure(_): break
+                default: break
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         })
     }
     
     func setUpTableView(){
         self.tableView.tableFooterView = UIView()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        let nib = UINib(nibName: "EpisodeTableViewCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: cellID)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,8 +65,12 @@ class EpisodesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        cell.textLabel?.text = episodes[indexPath.item].title
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! EpisodeTableViewCell
+        cell.episode = episodes[indexPath.item]
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 132
     }
 }
