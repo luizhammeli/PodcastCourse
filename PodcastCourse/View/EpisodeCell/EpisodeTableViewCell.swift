@@ -17,7 +17,7 @@ class EpisodeTableViewCell: UITableViewCell {
             titleLabel.text = episode.title
             descriptionLabel.text = episode.description
             pubDateLabel.text = episode.pubDate.getPodcastDateType()
-            let editedSring = episode.imageUrl.replacingOccurrences(of: "http:", with: "https:")
+            let editedSring = episode.imageUrl.checkHttpsString()
             guard let url = URL(string: editedSring) else {return}
             episodeImageView.sd_setImage(with: url)
         }

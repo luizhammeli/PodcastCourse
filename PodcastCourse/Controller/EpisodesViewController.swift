@@ -29,20 +29,13 @@ class EpisodesViewController: UITableViewController {
     
     func fetchEpisodes(){
         guard let stringUrl = podcast?.feedUrl else {return}
-        let editedSring = stringUrl.replacingOccurrences(of: "http:", with: "https:")
+        let editedSring = stringUrl.checkHttpsString()
         guard let url = URL(string: editedSring) else {return}
         let parser = FeedParser(URL: url)
         parser?.parseAsync(result: { (result) in
             switch result {
                 case let .rss(feed):
-                    feed.items?.forEach({ (item) in
-                        var episode = Episode(item)
-                        if episode.imageUrl.isEmpty{
-                            guard let feedImage = feed.iTunes?.iTunesImage?.attributes?.href else {return}
-                            episode.imageUrl = feedImage
-                        }
-                        self.episodes.append(episode)
-                    })
+                    self.episodes = feed.getFeedEpisodes()
                     break
                 case .failure(_): break
                 default: break
