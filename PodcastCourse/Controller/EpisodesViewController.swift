@@ -27,24 +27,13 @@ class EpisodesViewController: UITableViewController {
         fetchEpisodes()
     }
     
-    func fetchEpisodes(){
-        guard let stringUrl = podcast?.feedUrl else {return}
-        let editedSring = stringUrl.checkHttpsString()
-        guard let url = URL(string: editedSring) else {return}
-        let parser = FeedParser(URL: url)
-        parser?.parseAsync(result: { (result) in
-            switch result {
-                case let .rss(feed):
-                    self.episodes = feed.getFeedEpisodes()
-                    break
-                case .failure(_): break
-                default: break
-            }
-            
+    func fetchEpisodes(){        
+        ApiService.shared.fetchEpisodes(podcast: podcast) { (episodes) in
+            self.episodes = episodes
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-        })
+        }
     }
     
     func setUpTableView(){
