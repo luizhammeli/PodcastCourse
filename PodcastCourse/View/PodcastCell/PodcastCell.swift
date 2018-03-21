@@ -14,7 +14,12 @@ class PodcastCell: UITableViewCell {
     @IBOutlet weak var trackName: UILabel!
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var episodeCount: UILabel!
-    @IBOutlet weak var podcastImage: UIImageView!
+    @IBOutlet weak var podcastImage: UIImageView!{
+        didSet{
+            podcastImage.layer.cornerRadius = 4
+            podcastImage.layer.masksToBounds = true
+        }
+    }
     
     var podcast: Podcast?{
         didSet{
@@ -27,5 +32,4 @@ class PodcastCell: UITableViewCell {
             podcastImage.sd_setImage(with: url, completed: nil)
         }
     }
-    
 }

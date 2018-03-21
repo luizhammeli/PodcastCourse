@@ -15,6 +15,8 @@
 		387FBFDF205567FB00312985 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387FBFDE205567FB00312985 /* PodcastCell.swift */; };
 		38B039692050BF5A0040E0C1 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B039682050BF5A0040E0C1 /* SearchResult.swift */; };
 		6F0E8E91878391A9E52117A9 /* Pods_PodcastCourse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CF14421845A112B3B890E7D /* Pods_PodcastCourse.framework */; };
+		730CCBA820627F2C007E866A /* PlayerDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 730CCBA720627F2C007E866A /* PlayerDetailView.xib */; };
+		730CCBAB20628407007E866A /* PlayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730CCBAA20628407007E866A /* PlayerDetailView.swift */; };
 		73120E69205C1F77003E1C1E /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73120E68205C1F77003E1C1E /* Episode.swift */; };
 		73291915204EE4D90024BB42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73291914204EE4D90024BB42 /* AppDelegate.swift */; };
 		73291917204EE4D90024BB42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73291916204EE4D90024BB42 /* ViewController.swift */; };
@@ -39,6 +41,8 @@
 		387FBFDE205567FB00312985 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 		38B039682050BF5A0040E0C1 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		5CF14421845A112B3B890E7D /* Pods_PodcastCourse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodcastCourse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		730CCBA720627F2C007E866A /* PlayerDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerDetailView.xib; sourceTree = "<group>"; };
+		730CCBAA20628407007E866A /* PlayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailView.swift; sourceTree = "<group>"; };
 		73120E68205C1F77003E1C1E /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		73291911204EE4D90024BB42 /* PodcastCourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastCourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73291914204EE4D90024BB42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				73291918204EE4D90024BB42 /* Main.storyboard */,
+				730CCBA9206283EB007E866A /* PlayerDetail */,
 				38279B54205D902D008C80CC /* EpisodeCell */,
 				387FBFE0205567FF00312985 /* PodcastCell */,
 				7329191B204EE4D90024BB42 /* Assets.xcassets */,
@@ -113,6 +118,15 @@
 				387FBFDC2055663500312985 /* PodcastCell.xib */,
 			);
 			path = PodcastCell;
+			sourceTree = "<group>";
+		};
+		730CCBA9206283EB007E866A /* PlayerDetail */ = {
+			isa = PBXGroup;
+			children = (
+				730CCBA720627F2C007E866A /* PlayerDetailView.xib */,
+				730CCBAA20628407007E866A /* PlayerDetailView.swift */,
+			);
+			path = PlayerDetail;
 			sourceTree = "<group>";
 		};
 		73291908204EE4D90024BB42 = {
@@ -248,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				730CCBA820627F2C007E866A /* PlayerDetailView.xib in Resources */,
 				7329191F204EE4D90024BB42 /* LaunchScreen.storyboard in Resources */,
 				387FBFDD2055663500312985 /* PodcastCell.xib in Resources */,
 				7329191C204EE4D90024BB42 /* Assets.xcassets in Resources */,
@@ -322,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73291917204EE4D90024BB42 /* ViewController.swift in Sources */,
+				730CCBAB20628407007E866A /* PlayerDetailView.swift in Sources */,
 				38279B5D205D9ADD008C80CC /* DateExtension.swift in Sources */,
 				73291915204EE4D90024BB42 /* AppDelegate.swift in Sources */,
 				387FBFDF205567FB00312985 /* PodcastCell.swift in Sources */,
