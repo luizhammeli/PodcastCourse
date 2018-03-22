@@ -143,6 +143,7 @@
             <connections>
                 <outlet property="authorLabel" destination="skU-L6-rc8" id="NjV-F8-Wua"/>
                 <outlet property="currentTimeLabel" destination="LEB-ra-JFW" id="hQv-sh-7UM"/>
+                <outlet property="currentTimeSlider" destination="HbE-l0-J9K" id="lN4-3B-HdS"/>
                 <outlet property="episodeImageView" destination="na7-iB-Ev8" id="ds7-SZ-lOg"/>
                 <outlet property="episodeLabel" destination="myp-zl-Xub" id="KkD-8x-pnF"/>
                 <outlet property="playPauseButton" destination="iLb-CM-8xb" id="ytR-Nr-F0h"/>

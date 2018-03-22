@@ -48,6 +48,7 @@ class PlayerDetailView: UIView {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var podcastDurationLabel: UILabel!
+    @IBOutlet weak var currentTimeSlider: UISlider!
     
     @IBAction func dismissPlayerDetailView(_ sender: Any) {
         self.removeFromSuperview()
@@ -84,6 +85,7 @@ class PlayerDetailView: UIView {
         let time = CMTime(value: 1, timescale: 2)
         player.addPeriodicTimeObserver(forInterval: time, queue: .main) { (time) in
             self.currentTimeLabel.text = time.toDisplayString()
+            self.updateTimeSlider()
         }
     }
     
@@ -94,6 +96,13 @@ class PlayerDetailView: UIView {
             self.enlargeEpisodeImageView(enlarge: true)
             self.podcastDurationLabel.text = self.player.currentItem?.duration.toDisplayString()
         }
+    }
+    
+    func updateTimeSlider(){
+        let currentTime = CMTimeGetSeconds(self.player.currentTime())
+        let duration = CMTimeGetSeconds(self.player.currentItem?.duration ?? CMTime(value: 1, timescale: 1))
+        let percent = currentTime/duration
+        currentTimeSlider.value = Float(percent)
     }
     
     fileprivate func enlargeEpisodeImageView(enlarge: Bool){
