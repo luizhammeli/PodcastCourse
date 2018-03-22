@@ -12,7 +12,7 @@ import AVFoundation
 
 class PlayerDetailView: UIView {
     
-    let scale: CGFloat = 0.7
+    let scale = CGAffineTransform(scaleX: 0.7, y: 0.7)
     
     var episode: Episode?{
         didSet{
@@ -41,7 +41,7 @@ class PlayerDetailView: UIView {
     @IBOutlet weak var episodeImageView: UIImageView!{
         didSet{
             episodeImageView.layer.cornerRadius = 5            
-            episodeImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+            episodeImageView.transform = scale
         }
     }
     @IBOutlet weak var playPauseButton: UIButton!
@@ -79,12 +79,12 @@ class PlayerDetailView: UIView {
         let timeValue = NSValue(time: time)
         player.addBoundaryTimeObserver(forTimes: [timeValue], queue: .main) {
             self.enlargeEpisodeImageView(enlarge: true)
-        }        
+        }
     }
     
     fileprivate func enlargeEpisodeImageView(enlarge: Bool){
         
-        let scale = enlarge ? .identity : CGAffineTransform(scaleX: self.scale, y: self.scale)
+        let scale = enlarge ? .identity : self.scale
 
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.episodeImageView.transform = scale
