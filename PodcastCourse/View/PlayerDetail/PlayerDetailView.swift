@@ -12,6 +12,8 @@ import AVFoundation
 
 class PlayerDetailView: UIView {
     
+    let scale: CGFloat = 0.7
+    
     var episode: Episode?{
         didSet{
             guard let episode = episode else {return}
@@ -36,8 +38,13 @@ class PlayerDetailView: UIView {
         }
     }
     
+    @IBOutlet weak var episodeImageView: UIImageView!{
+        didSet{
+            episodeImageView.layer.cornerRadius = 5            
+            episodeImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }
+    }
     @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var episodeImageView: UIImageView!
     @IBOutlet weak var authorLabel: UILabel!
     
     @IBAction func dismissPlayerDetailView(_ sender: Any) {
@@ -55,11 +62,32 @@ class PlayerDetailView: UIView {
     
     @IBAction func handlePlayPauseButton(_ sender: Any) {        
         if (player.timeControlStatus == .paused){
+            enlargeEpisodeImageView(enlarge: true)
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             player.play()
         }else{
             playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            enlargeEpisodeImageView(enlarge: false)
             player.pause()
         }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let time = CMTime(value: 1, timescale: 3)
+        let timeValue = NSValue(time: time)
+        player.addBoundaryTimeObserver(forTimes: [timeValue], queue: .main) {
+            self.enlargeEpisodeImageView(enlarge: true)
+        }        
+    }
+    
+    fileprivate func enlargeEpisodeImageView(enlarge: Bool){
+        
+        let scale = enlarge ? .identity : CGAffineTransform(scaleX: self.scale, y: self.scale)
+
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.episodeImageView.transform = scale
+        }, completion: nil)
     }
 }
