@@ -31,7 +31,6 @@ class PlayerDetailView: UIView {
         return avPlayer
     }()
     
-    
     @IBOutlet weak var episodeLabel: UILabel!{
         didSet{
             self.episodeLabel.numberOfLines = 2
@@ -44,8 +43,11 @@ class PlayerDetailView: UIView {
             episodeImageView.transform = scale
         }
     }
+    
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var currentTimeLabel: UILabel!
+    @IBOutlet weak var podcastDurationLabel: UILabel!
     
     @IBAction func dismissPlayerDetailView(_ sender: Any) {
         self.removeFromSuperview()
@@ -74,11 +76,23 @@ class PlayerDetailView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        addPeriodicTimeObserver()
+        addTimeObserver()
+    }
+    
+    func addPeriodicTimeObserver(){
+        let time = CMTime(value: 1, timescale: 2)
+        player.addPeriodicTimeObserver(forInterval: time, queue: .main) { (time) in
+            self.currentTimeLabel.text = time.toDisplayString()
+        }
+    }
+    
+    func addTimeObserver(){
         let time = CMTime(value: 1, timescale: 3)
         let timeValue = NSValue(time: time)
         player.addBoundaryTimeObserver(forTimes: [timeValue], queue: .main) {
             self.enlargeEpisodeImageView(enlarge: true)
+            self.podcastDurationLabel.text = self.player.currentItem?.duration.toDisplayString()
         }
     }
     

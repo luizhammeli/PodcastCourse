@@ -26,6 +26,7 @@
 		73291927204EE5280024BB42 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73291926204EE5280024BB42 /* MainTabBarController.swift */; };
 		7355CEE4205009CF00198C3E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355CEE3205009CF00198C3E /* SearchViewController.swift */; };
 		7355CEE820500A2A00198C3E /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355CEE720500A2A00198C3E /* Podcast.swift */; };
+		73A3F7252063DBED0009CDFB /* CMTimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A3F7242063DBED0009CDFB /* CMTimeExtension.swift */; };
 		73AC98C82059532800DC162E /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AC98C72059532800DC162E /* EpisodesViewController.swift */; };
 		73E40AE6205FDC5E00AB0413 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E40AE5205FDC5E00AB0413 /* StringExtension.swift */; };
 		73E40AE82060177C00AB0413 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E40AE72060177C00AB0413 /* RSSFeed.swift */; };
@@ -54,6 +55,7 @@
 		73291926204EE5280024BB42 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7355CEE3205009CF00198C3E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7355CEE720500A2A00198C3E /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		73A3F7242063DBED0009CDFB /* CMTimeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTimeExtension.swift; sourceTree = "<group>"; };
 		73AC98C72059532800DC162E /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
 		73E40AE5205FDC5E00AB0413 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		73E40AE72060177C00AB0413 /* RSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeed.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				38279B5C205D9ADD008C80CC /* DateExtension.swift */,
 				73E40AE5205FDC5E00AB0413 /* StringExtension.swift */,
 				73E40AE72060177C00AB0413 /* RSSFeed.swift */,
+				73A3F7242063DBED0009CDFB /* CMTimeExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				38279B59205D906D008C80CC /* EpisodeTableViewCell.swift in Sources */,
 				73291927204EE5280024BB42 /* MainTabBarController.swift in Sources */,
 				38B039692050BF5A0040E0C1 /* SearchResult.swift in Sources */,
+				73A3F7252063DBED0009CDFB /* CMTimeExtension.swift in Sources */,
 				387FBFDA20555DD300312985 /* ApiService.swift in Sources */,
 				73E40AE6205FDC5E00AB0413 /* StringExtension.swift in Sources */,
 				7355CEE820500A2A00198C3E /* Podcast.swift in Sources */,
