@@ -41,4 +41,6 @@ class EpisodeTableViewCell: UITableViewCell {
         episodeImageView.layer.cornerRadius = 4
         episodeImageView.layer.masksToBounds = true        
     }
+    
+    
 }

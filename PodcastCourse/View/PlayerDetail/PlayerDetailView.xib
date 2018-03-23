@@ -44,6 +44,9 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="JgX-aI-6ZS"/>
                             </constraints>
+                            <connections>
+                                <action selector="CurrentTimeSliderValueChanged:" destination="x8U-nd-jLl" eventType="valueChanged" id="L5a-4C-hOR"/>
+                            </connections>
                         </slider>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ixi-nZ-yHQ">
                             <rect key="frame" x="0.0" y="407" width="327" height="22"/>
@@ -90,6 +93,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="109" height="199"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" image="rewind15"/>
+                                    <connections>
+                                        <action selector="handleFastRewindButton:" destination="x8U-nd-jLl" eventType="touchUpInside" id="ITR-J7-IEN"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLb-CM-8xb">
                                     <rect key="frame" x="109" y="0.0" width="109" height="199"/>

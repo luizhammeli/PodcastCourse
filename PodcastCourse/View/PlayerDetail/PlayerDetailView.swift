@@ -83,9 +83,12 @@ class PlayerDetailView: UIView {
     
     func addPeriodicTimeObserver(){
         let time = CMTime(value: 1, timescale: 2)
-        player.addPeriodicTimeObserver(forInterval: time, queue: .main) { (time) in
-            self.currentTimeLabel.text = time.toDisplayString()
+        player.addPeriodicTimeObserver(forInterval: time, queue: .main) { (updateTime) in
+            self.currentTimeLabel.text = updateTime.toDisplayString()
             self.updateTimeSlider()
+            
+            if(self.currentTimeLabel.text == self.player.currentItem?.duration.toDisplayString()){                
+            }
         }
     }
     
@@ -113,4 +116,17 @@ class PlayerDetailView: UIView {
             self.episodeImageView.transform = scale
         }, completion: nil)
     }
+    
+    @IBAction func CurrentTimeSliderValueChanged(_ sender: Any) {
+        guard let slider = sender as? UISlider, let duration = player.currentItem?.duration else{return}
+        let currentTimeSeconds = CMTimeGetSeconds(duration)
+        let percent = Float64(slider.value) * currentTimeSeconds
+        player.seek(to: CMTimeMakeWithSeconds(percent, 1))
+    }
+        
+    
+    @IBAction func handleFastRewindButton(_ sender: Any) {
+    }
+    
+    
 }
