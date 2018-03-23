@@ -57,10 +57,23 @@ class EpisodesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
-        guard let window = UIApplication.shared.keyWindow else {return}        
-        let playerView = Bundle.main.loadNibNamed("PlayerDetailView", owner: self, options: nil)?.first as! PlayerDetailView
-        playerView.episode = self.episodes[indexPath.item]
-        playerView.frame = self.view.frame
-        window.addSubview(playerView)
+        //guard let window = UIApplication.shared.keyWindow else {return}
+        guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}        
+        mainTabBar.playerDetailView.episode = self.episodes[indexPath.item]
+        mainTabBar.maximizedPlayerDetailView()
+        //playerView.frame = self.view.frame
+        //window.addSubview(playerView)
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicator.color = UIColor.darkGray
+        activityIndicator.startAnimating()
+        
+        return activityIndicator
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return episodes.isEmpty ? 200 : 0
     }
 }

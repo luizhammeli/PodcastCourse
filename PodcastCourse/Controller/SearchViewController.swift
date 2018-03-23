@@ -12,9 +12,9 @@ import Alamofire
 class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     var podcasts = [Podcast]()
-    
     let cellID = "cellID"
     let searchController = UISearchController(searchResultsController: nil)
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +50,14 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        ApiService.shared.fetchPodcasts(searchText) { (results) in
-            self.podcasts = results
-            self.tableView.reloadData()
-        }
+        
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            ApiService.shared.fetchPodcasts(searchText) { (results) in
+                self.podcasts = results
+                self.tableView.reloadData()
+            }
+        })
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,6 +67,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let episodesViewController = EpisodesViewController()
         episodesViewController.podcast = podcasts[indexPath.item]
+        self.tableView.deselectRow(at: indexPath, animated: true)
         self.navigationController?.pushViewController(episodesViewController, animated: true)
     }
     
@@ -72,7 +77,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         label.textColor = UIColor.purple
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-
         return label
     }
     

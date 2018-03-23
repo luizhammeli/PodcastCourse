@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PodcastCourse/View/PlayerDetail/PlayerDetailView.swift"
-            timestampString = "543430855.522547"
+            filePath = "PodcastCourse/Controller/SearchViewController.swift"
+            timestampString = "543529357.228754"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "updateTimeSlider()"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "searchBar(_:textDidChange:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PodcastCourse/View/PlayerDetail/PlayerDetailView.swift"
-            timestampString = "543430855.5229419"
+            filePath = "PodcastCourse/Controller/SearchViewController.swift"
+            timestampString = "543529357.2289079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "updateTimeSlider()"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "searchBar(_:textDidChange:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,44 +41,44 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PodcastCourse/View/PlayerDetail/PlayerDetailView.swift"
-            timestampString = "543430855.523183"
+            filePath = "PodcastCourse/Controller/SearchViewController.swift"
+            timestampString = "543529357.229022"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "updateTimeSlider()"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "searchBar(_:textDidChange:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "PodcastCourse.PlayerDetailView.updateTimeSlider() -&gt; ()"
+                  symbolName = "closure #1 (__ObjC.Timer) -&gt; () in PodcastCourse.SearchViewController.searchBar(__ObjC.UISearchBar, textDidChange: Swift.String) -&gt; ()"
                   moduleName = "PodcastCourse"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ios_dev/Documents/Estudo/PodcastCourse/PodcastCourse/View/PlayerDetail/PlayerDetailView.swift"
-                  timestampString = "543430936.7208641"
+                  urlString = "file:///Users/ios_dev/Documents/Estudo/PodcastCourse/PodcastCourse/Controller/SearchViewController.swift"
+                  timestampString = "543529357.3776309"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "234">
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "67">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; __C.CMTime in PodcastCourse.PlayerDetailView.updateTimeSlider() -&gt; ()"
+                  symbolName = "closure #1 (Swift.Array&lt;PodcastCourse.Podcast&gt;) -&gt; () in closure #1 (__ObjC.Timer) -&gt; () in PodcastCourse.SearchViewController.searchBar(__ObjC.UISearchBar, textDidChange: Swift.String) -&gt; ()"
                   moduleName = "PodcastCourse"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ios_dev/Documents/Estudo/PodcastCourse/PodcastCourse/View/PlayerDetail/PlayerDetailView.swift"
-                  timestampString = "543430936.723538"
+                  urlString = "file:///Users/ios_dev/Documents/Estudo/PodcastCourse/PodcastCourse/Controller/SearchViewController.swift"
+                  timestampString = "543529357.380759"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "4">
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "18">
                </Location>
             </Locations>
          </BreakpointContent>

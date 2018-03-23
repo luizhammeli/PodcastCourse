@@ -94,7 +94,7 @@
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" image="rewind15"/>
                                     <connections>
-                                        <action selector="handleFastRewindButton:" destination="x8U-nd-jLl" eventType="touchUpInside" id="ITR-J7-IEN"/>
+                                        <action selector="handleRewindButton:" destination="x8U-nd-jLl" eventType="touchUpInside" id="4Vv-yT-SRr"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLb-CM-8xb">
@@ -109,6 +109,9 @@
                                     <rect key="frame" x="218" y="0.0" width="109" height="199"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" image="fastforward15"/>
+                                    <connections>
+                                        <action selector="handleFastButton:" destination="x8U-nd-jLl" eventType="touchUpInside" id="r97-Wa-750"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>
@@ -123,6 +126,9 @@
                                 </imageView>
                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="PSR-FA-ov3">
                                     <rect key="frame" x="32" y="0.0" width="263" height="35"/>
+                                    <connections>
+                                        <action selector="volumeSliderValueChanged:" destination="x8U-nd-jLl" eventType="valueChanged" id="V33-TO-b4l"/>
+                                    </connections>
                                 </slider>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="max_volume" translatesAutoresizingMaskIntoConstraints="NO" id="lLK-pY-cOl">
                                     <rect key="frame" x="293" y="0.0" width="34" height="34"/>

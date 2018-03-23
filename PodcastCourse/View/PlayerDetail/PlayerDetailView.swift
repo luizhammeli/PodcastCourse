@@ -31,6 +31,7 @@ class PlayerDetailView: UIView {
         return avPlayer
     }()
     
+    
     @IBOutlet weak var episodeLabel: UILabel!{
         didSet{
             self.episodeLabel.numberOfLines = 2
@@ -39,7 +40,7 @@ class PlayerDetailView: UIView {
     
     @IBOutlet weak var episodeImageView: UIImageView!{
         didSet{
-            episodeImageView.layer.cornerRadius = 5            
+            episodeImageView.layer.cornerRadius = 5
             episodeImageView.transform = scale
         }
     }
@@ -50,10 +51,6 @@ class PlayerDetailView: UIView {
     @IBOutlet weak var podcastDurationLabel: UILabel!
     @IBOutlet weak var currentTimeSlider: UISlider!
     
-    @IBAction func dismissPlayerDetailView(_ sender: Any) {
-        self.removeFromSuperview()
-    }
-    
     fileprivate func playEpisode(){
         guard let episode = episode else {return}
         guard let url = URL(string: episode.streamUrl) else {return}
@@ -63,32 +60,24 @@ class PlayerDetailView: UIView {
         player.play()
     }
     
-    @IBAction func handlePlayPauseButton(_ sender: Any) {        
-        if (player.timeControlStatus == .paused){
-            enlargeEpisodeImageView(enlarge: true)
-            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            player.play()
-        }else{
-            playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
-            enlargeEpisodeImageView(enlarge: false)
-            player.pause()
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         addPeriodicTimeObserver()
         addTimeObserver()
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
+    }
+    
+    @objc func handleTapMaximize(){
+        print(123)
+        guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
+        mainTabBar.maximizedPlayerDetailView()
     }
     
     func addPeriodicTimeObserver(){
         let time = CMTime(value: 1, timescale: 2)
-        player.addPeriodicTimeObserver(forInterval: time, queue: .main) { (updateTime) in
-            self.currentTimeLabel.text = updateTime.toDisplayString()
-            self.updateTimeSlider()
-            
-            if(self.currentTimeLabel.text == self.player.currentItem?.duration.toDisplayString()){                
-            }
+        player.addPeriodicTimeObserver(forInterval: time, queue: .main) { [weak self] (updateTime)  in
+            self?.currentTimeLabel.text = updateTime.toDisplayString()
+            self?.updateTimeSlider()
         }
     }
     
@@ -96,8 +85,9 @@ class PlayerDetailView: UIView {
         let time = CMTime(value: 1, timescale: 3)
         let timeValue = NSValue(time: time)
         player.addBoundaryTimeObserver(forTimes: [timeValue], queue: .main) {
-            self.enlargeEpisodeImageView(enlarge: true)
-            self.podcastDurationLabel.text = self.player.currentItem?.duration.toDisplayString()
+            [weak self] in
+            self?.enlargeEpisodeImageView(enlarge: true)
+            self?.podcastDurationLabel.text = self?.player.currentItem?.duration.toDisplayString()
         }
     }
     
@@ -117,16 +107,49 @@ class PlayerDetailView: UIView {
         }, completion: nil)
     }
     
-    @IBAction func CurrentTimeSliderValueChanged(_ sender: Any) {
-        guard let slider = sender as? UISlider, let duration = player.currentItem?.duration else{return}
+    fileprivate func fastRewindPodcast(time: Int64){
+        let seekTime = CMTimeAdd(player.currentTime(), CMTimeMake(time, 1))
+        player.seek(to: seekTime)
+    }
+    
+    static func loadNibFile() -> PlayerDetailView{
+        return Bundle.main.loadNibNamed("PlayerDetailView", owner: self, options: nil)?.first as! PlayerDetailView
+    }
+    
+    //MARK:- IBActions
+    @IBAction func CurrentTimeSliderValueChanged(_ sender: UISlider) {
+        guard let duration = player.currentItem?.duration else{return}
         let currentTimeSeconds = CMTimeGetSeconds(duration)
-        let percent = Float64(slider.value) * currentTimeSeconds
+        let percent = Float64(sender.value) * currentTimeSeconds
         player.seek(to: CMTimeMakeWithSeconds(percent, 1))
     }
-        
     
-    @IBAction func handleFastRewindButton(_ sender: Any) {
+    @IBAction func handleFastButton(_ sender: Any) {
+        fastRewindPodcast(time: 15)
     }
     
+    @IBAction func handleRewindButton(_ sender: Any) {
+        fastRewindPodcast(time: -15)
+    }
     
+    @IBAction func volumeSliderValueChanged(_ sender: UISlider) {
+        self.player.volume = sender.value
+    }
+    
+    @IBAction func dismissPlayerDetailView(_ sender: Any) {
+        guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
+        mainTabBar.minimizedPlayerDetailView()
+    }
+    
+    @IBAction func handlePlayPauseButton(_ sender: Any) {
+        if (player.timeControlStatus == .paused){
+            enlargeEpisodeImageView(enlarge: true)
+            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            player.play()
+        }else{
+            playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            enlargeEpisodeImageView(enlarge: false)
+            player.pause()
+        }
+    }
 }

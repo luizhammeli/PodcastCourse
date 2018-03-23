@@ -35,22 +35,24 @@ class ApiService{
         guard let stringUrl = podcast?.feedUrl else {return}
         let editedSring = stringUrl.checkHttpsString()
         guard let url = URL(string: editedSring) else {return}
-        let parser = FeedParser(URL: url)
         var episodes = [Episode]()
         
-        parser?.parseAsync(result: { (result) in
-            
-            if let error = result.error{
-                print("error to parse episodes feed: \(error)")
-                return
-            }
-            
-            if let rss = result.rssFeed{
-                episodes = rss.getFeedEpisodes()
-            }
-            
-            completionHandler(episodes)
-        })
+        DispatchQueue.global(qos: .background).async {
+            let parser = FeedParser(URL: url)
+            parser?.parseAsync(result: { (result) in
+                
+                if let error = result.error{
+                    print("error to parse episodes feed: \(error)")
+                    return
+                }
+                
+                if let rss = result.rssFeed{
+                    episodes = rss.getFeedEpisodes()
+                }
+                
+                completionHandler(episodes)
+            })
+        }
     }
     
     func convertJson(_ data: Data)->[Podcast]{
