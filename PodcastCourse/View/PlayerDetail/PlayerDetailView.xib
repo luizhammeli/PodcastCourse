@@ -124,7 +124,7 @@
                                         <constraint firstAttribute="width" constant="34" id="48h-FU-zln"/>
                                     </constraints>
                                 </imageView>
-                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="PSR-FA-ov3">
+                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="PSR-FA-ov3">
                                     <rect key="frame" x="32" y="0.0" width="263" height="35"/>
                                     <connections>
                                         <action selector="volumeSliderValueChanged:" destination="x8U-nd-jLl" eventType="valueChanged" id="V33-TO-b4l"/>

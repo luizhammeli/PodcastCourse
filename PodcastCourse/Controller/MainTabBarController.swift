@@ -53,7 +53,7 @@ class MainTabBarController: UITabBarController{
     
     //MARK:- Setup Function
     func setUpViewControllers(){
-        self.viewControllers = [setUpTabBarItens(rootViewController: SearchViewController() , title: "Search", image: #imageLiteral(resourceName: "search")),setUpTabBarItens(rootViewController: ViewController() , title: "Favorites", image: #imageLiteral(resourceName: "favorites")), setUpTabBarItens(rootViewController: ViewController() , title: "Downloads", image:#imageLiteral(resourceName: "downloads"))]
+        self.viewControllers = [setUpTabBarItens(rootViewController: FavoritesController(collectionViewLayout: UICollectionViewFlowLayout()), title: "Favorites", image: #imageLiteral(resourceName: "favorites")), setUpTabBarItens(rootViewController: SearchViewController() , title: "Search", image: #imageLiteral(resourceName: "search")), setUpTabBarItens(rootViewController: ViewController() , title: "Downloads", image:#imageLiteral(resourceName: "downloads"))]
     }
     
     fileprivate func setUpTabBarItens(rootViewController: UIViewController, title: String, image: UIImage)->UIViewController{
