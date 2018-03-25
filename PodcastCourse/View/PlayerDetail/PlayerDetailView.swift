@@ -13,7 +13,9 @@ import AVFoundation
 class PlayerDetailView: UIView {
     
     let scale = CGAffineTransform(scaleX: 0.7, y: 0.7)
-    
+    let miniPlayerView = MiniPlayerView.loadMiniPlayerViewNib()
+    var panGesture:UIPanGestureRecognizer?
+
     var episode: Episode?{
         didSet{
             guard let episode = episode else {return}
@@ -21,6 +23,7 @@ class PlayerDetailView: UIView {
             guard let url = URL(string: episode.imageUrl.checkHttpsString()) else {return}
             episodeImageView.sd_setImage(with: url)
             authorLabel.text = episode.author
+            miniPlayerView.episode = episode
             playEpisode()
         }
     }
@@ -30,7 +33,6 @@ class PlayerDetailView: UIView {
         avPlayer.automaticallyWaitsToMinimizeStalling = false
         return avPlayer
     }()
-    
     
     @IBOutlet weak var episodeLabel: UILabel!{
         didSet{
@@ -45,6 +47,7 @@ class PlayerDetailView: UIView {
         }
     }
     
+    @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var currentTimeLabel: UILabel!
@@ -64,13 +67,9 @@ class PlayerDetailView: UIView {
         super.awakeFromNib()
         addPeriodicTimeObserver()
         addTimeObserver()
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
-    }
-    
-    @objc func handleTapMaximize(){
-        print(123)
-        guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
-        mainTabBar.maximizedPlayerDetailView()
+        setUpPLayerView()
+        addFeedNotification()
+        addGesturesRecognizer()
     }
     
     func addPeriodicTimeObserver(){
@@ -89,6 +88,15 @@ class PlayerDetailView: UIView {
             self?.enlargeEpisodeImageView(enlarge: true)
             self?.podcastDurationLabel.text = self?.player.currentItem?.duration.toDisplayString()
         }
+    }
+    
+    func setUpPLayerView(){
+        miniPlayerView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(miniPlayerView)
+        miniPlayerView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        miniPlayerView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        miniPlayerView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        miniPlayerView.heightAnchor.constraint(equalToConstant: 64).isActive = true
     }
     
     func updateTimeSlider(){
@@ -114,7 +122,7 @@ class PlayerDetailView: UIView {
     
     static func loadNibFile() -> PlayerDetailView{
         return Bundle.main.loadNibNamed("PlayerDetailView", owner: self, options: nil)?.first as! PlayerDetailView
-    }
+    }    
     
     //MARK:- IBActions
     @IBAction func CurrentTimeSliderValueChanged(_ sender: UISlider) {
@@ -137,8 +145,7 @@ class PlayerDetailView: UIView {
     }
     
     @IBAction func dismissPlayerDetailView(_ sender: Any) {
-        guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
-        mainTabBar.minimizedPlayerDetailView()
+        UIApplication.getMainTabBar()?.minimizedPlayerDetailView()
     }
     
     @IBAction func handlePlayPauseButton(_ sender: Any) {

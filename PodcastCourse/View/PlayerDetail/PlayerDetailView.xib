@@ -158,6 +158,7 @@
                 <outlet property="currentTimeSlider" destination="HbE-l0-J9K" id="lN4-3B-HdS"/>
                 <outlet property="episodeImageView" destination="na7-iB-Ev8" id="ds7-SZ-lOg"/>
                 <outlet property="episodeLabel" destination="myp-zl-Xub" id="KkD-8x-pnF"/>
+                <outlet property="mainStackView" destination="MR6-SJ-o8A" id="wwU-Ab-SqZ"/>
                 <outlet property="playPauseButton" destination="iLb-CM-8xb" id="ytR-Nr-F0h"/>
                 <outlet property="podcastDurationLabel" destination="Q3s-4G-Eot" id="odn-wK-ZcK"/>
             </connections>

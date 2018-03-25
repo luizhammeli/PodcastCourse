@@ -56,13 +56,9 @@ class EpisodesViewController: UITableViewController {
         return 132
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
-        //guard let window = UIApplication.shared.keyWindow else {return}
-        guard let mainTabBar = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}        
-        mainTabBar.playerDetailView.episode = self.episodes[indexPath.item]
-        mainTabBar.maximizedPlayerDetailView()
-        //playerView.frame = self.view.frame
-        //window.addSubview(playerView)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        UIApplication.getMainTabBar()?.playerDetailView.episode = self.episodes[indexPath.item]
+        UIApplication.getMainTabBar()?.maximizedPlayerDetailView()
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

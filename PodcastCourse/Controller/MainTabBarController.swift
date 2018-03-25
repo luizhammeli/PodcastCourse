@@ -12,6 +12,7 @@ class MainTabBarController: UITabBarController{
     
     var maxTopConstraint: NSLayoutConstraint!
     var minTopConstraint: NSLayoutConstraint!
+    var bottomAnchorConstraint: NSLayoutConstraint!
     let playerDetailView = PlayerDetailView.loadNibFile()
     
     override func viewDidLoad() {
@@ -20,27 +21,33 @@ class MainTabBarController: UITabBarController{
         UINavigationBar.appearance().prefersLargeTitles = true
         setUpViewControllers()
         setUpDetailView()
-        perform(#selector(maximizedPlayerDetailView), with: self, afterDelay: 1)
     }
     
-
-    
     @objc func maximizedPlayerDetailView(){
-        maxTopConstraint.constant = 0
-        maxTopConstraint.isActive = true
         minTopConstraint.isActive = false
+        maxTopConstraint.isActive = true
+        maxTopConstraint.constant = 0
+        bottomAnchorConstraint.constant = 0
+        
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
-            self.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
+            self.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)            
+            self.playerDetailView.mainStackView.alpha = 1
+            self.playerDetailView.miniPlayerView.alpha = 0
         }, completion: nil)
     }
     
     @objc func minimizedPlayerDetailView(){
         maxTopConstraint.isActive = false
+        bottomAnchorConstraint.constant = self.view.frame.height
         minTopConstraint.isActive = true
+        
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
             self.tabBar.transform = .identity
+            self.playerDetailView.mainStackView.alpha = 0
+            self.playerDetailView.miniPlayerView.alpha = 1
+            self.playerDetailView.miniPlayerView.setPlayButtonImage((self.playerDetailView.playPauseButton.imageView?.image)!) 
         }, completion: nil)
     }
     
@@ -59,14 +66,15 @@ class MainTabBarController: UITabBarController{
     
     func setUpDetailView(){
         playerDetailView.translatesAutoresizingMaskIntoConstraints = false
-        //playerDetailView.backgroundColor = .red
         self.view.insertSubview(playerDetailView, belowSubview: tabBar)
-        maxTopConstraint = playerDetailView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.frame.height)
-        maxTopConstraint.isActive = true
-        minTopConstraint = playerDetailView.topAnchor.constraint(equalTo: self.tabBar.topAnchor, constant: -64)
         
+        maxTopConstraint = playerDetailView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.frame.height)
+        minTopConstraint = playerDetailView.topAnchor.constraint(equalTo: self.tabBar.topAnchor, constant: -64)
         playerDetailView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         playerDetailView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        playerDetailView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        bottomAnchorConstraint = playerDetailView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: self.view.frame.height)
+        
+        maxTopConstraint.isActive = true
+        bottomAnchorConstraint.isActive = true
     }
 }
