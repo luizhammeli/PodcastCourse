@@ -14,6 +14,7 @@ class EpisodesViewController: UITableViewController {
     
     let cellID = "cellID"
     var episodes = [Episode]()
+    let favoriteObjectKey = "favoriteObjectKey"
     
     var podcast: Podcast?{
         didSet{
@@ -25,6 +26,22 @@ class EpisodesViewController: UITableViewController {
         super.viewDidLoad()
         setUpTableView()
         fetchEpisodes()
+        setuUpNavigationButtons()
+    }
+    
+    fileprivate func setuUpNavigationButtons(){
+                self.navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Favorite", style: UIBarButtonItemStyle.plain, target: self, action: #selector(handleSaveButton)), UIBarButtonItem(title: "Fetch", style: UIBarButtonItemStyle.plain, target: self, action: #selector(handleFetchButton))]
+    }
+    
+    @objc func handleFetchButton(){
+        guard let data = UserDefaults.standard.object(forKey: favoriteObjectKey) as? Data else {return}
+        guard let podcast = NSKeyedUnarchiver.unarchiveObject(with: data) as? Podcast else{return}
+        print("\(String(describing: podcast.artistName)) \(String(describing: podcast.trackName))")
+    }
+    
+    @objc func handleSaveButton(){
+        let data = NSKeyedArchiver.archivedData(withRootObject: podcast ?? "")
+        UserDefaults.standard.set(data, forKey: favoriteObjectKey)
     }
     
     func fetchEpisodes(){        
