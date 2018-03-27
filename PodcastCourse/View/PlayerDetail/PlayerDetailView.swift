@@ -40,15 +40,13 @@ class PlayerDetailView: UIView {
         }
     }
     
-    @IBOutlet weak var episodeImageView: UIImageView!{
+    @IBOutlet weak var episodeImageView: UIImageView!
+    @IBOutlet weak var mainStackView: UIStackView!
+    @IBOutlet weak var playPauseButton: UIButton!{
         didSet{
-            episodeImageView.layer.cornerRadius = 5
-            episodeImageView.transform = scale
+            playPauseButton.transform = scale
         }
     }
-    
-    @IBOutlet weak var mainStackView: UIStackView!
-    @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var podcastDurationLabel: UILabel!

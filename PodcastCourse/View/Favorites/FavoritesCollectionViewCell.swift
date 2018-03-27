@@ -10,11 +10,20 @@ import UIKit
 
 class FavoritesCollectionViewCell: UICollectionViewCell {
     
+    var podcast: Podcast?{
+        didSet{
+            guard let podcast = podcast else {return}
+            artistNamelabel.text = podcast.artistName
+            trackNamelabel.text = podcast.trackName
+            guard let url = URL(string: podcast.artworkUrl600 ?? "") else {return}
+            imageView.sd_setImage(with: url, completed: nil)
+        }
+    }
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        //imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-        imageView.image = #imageLiteral(resourceName: "icon")
+        //imageView.image = #imageLiteral(resourceName: "icon")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()

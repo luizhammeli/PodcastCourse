@@ -14,7 +14,8 @@ class EpisodesViewController: UITableViewController {
     
     let cellID = "cellID"
     var episodes = [Episode]()
-    let favoriteObjectKey = "favoriteObjectKey"
+    static let updateFavoritesController = NSNotification.Name(rawValue: "updateFavoritesController")
+    var isFavorite = false
     
     var podcast: Podcast?{
         didSet{
@@ -30,18 +31,40 @@ class EpisodesViewController: UITableViewController {
     }
     
     fileprivate func setuUpNavigationButtons(){
-                self.navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Favorite", style: UIBarButtonItemStyle.plain, target: self, action: #selector(handleSaveButton)), UIBarButtonItem(title: "Fetch", style: UIBarButtonItemStyle.plain, target: self, action: #selector(handleFetchButton))]
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: UIBarButtonItemStyle.plain, target: self, action: #selector(handleSaveButton))
+        handleFetchButton()
     }
     
     @objc func handleFetchButton(){
-        guard let data = UserDefaults.standard.object(forKey: favoriteObjectKey) as? Data else {return}
-        guard let podcast = NSKeyedUnarchiver.unarchiveObject(with: data) as? Podcast else{return}
-        print("\(String(describing: podcast.artistName)) \(String(describing: podcast.trackName))")
+        let podcasts = UserDefaults.fetchFavorites()
+        podcasts.forEach { (selectedpodcast) in
+            if (selectedpodcast.artworkUrl600 == podcast?.artworkUrl600){
+                self.navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "heart")
+                isFavorite = true
+                return
+            }
+        }
     }
     
     @objc func handleSaveButton(){
-        let data = NSKeyedArchiver.archivedData(withRootObject: podcast ?? "")
-        UserDefaults.standard.set(data, forKey: favoriteObjectKey)
+        var podcasts = UserDefaults.fetchFavorites()
+        if (!isFavorite){
+            guard let podcast = podcast else {return}
+            podcasts.append(podcast)
+            UserDefaults.saveFavorites(podcasts)
+            self.navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "heart")
+            return
+        }
+        
+        for(index, podcast) in podcasts.enumerated(){
+            if (podcast.artistName == self.podcast?.artistName && podcast.trackName == self.podcast?.trackName){
+                self.navigationItem.rightBarButtonItem?.image = nil
+                self.navigationItem.rightBarButtonItem?.title = "Favorite"
+                podcasts.remove(at: index)
+                UserDefaults.saveFavorites(podcasts)
+                break
+            }
+        }
     }
     
     func fetchEpisodes(){        
@@ -79,14 +102,22 @@ class EpisodesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityIndicator.color = UIColor.darkGray
-        activityIndicator.startAnimating()
-        
-        return activityIndicator
+        return UIView()
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return episodes.isEmpty ? 200 : 0
+        guard let miniDisplayIsVisible = UIApplication.getMainTabBar()?.miniDisplayIsVisible else {return 0}
+        return (episodes.count > 2 && miniDisplayIsVisible) ? 64 : 0
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicator.color = UIColor.darkGray
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+         return episodes.isEmpty ? 200 : 0
     }
 }

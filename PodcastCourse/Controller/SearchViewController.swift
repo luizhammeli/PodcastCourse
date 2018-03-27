@@ -85,6 +85,15 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         return (podcasts.count > 0 || text.isEmpty) ? 0 : 250
     }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        guard let miniDisplayIsVisible = UIApplication.getMainTabBar()?.miniDisplayIsVisible else {return 0}
+        return (podcasts.count > 10 && miniDisplayIsVisible) ? 64 : 0
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.podcasts.removeAll()
         self.tableView.reloadData()

@@ -14,6 +14,7 @@ class MainTabBarController: UITabBarController{
     var minTopConstraint: NSLayoutConstraint!
     var bottomAnchorConstraint: NSLayoutConstraint!
     let playerDetailView = PlayerDetailView.loadNibFile()
+    var miniDisplayIsVisible = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class MainTabBarController: UITabBarController{
         maxTopConstraint.isActive = false
         bottomAnchorConstraint.constant = self.view.frame.height
         minTopConstraint.isActive = true
+        miniDisplayIsVisible = true
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()

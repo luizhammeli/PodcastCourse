@@ -24,6 +24,7 @@
 		6F0E8E91878391A9E52117A9 /* Pods_PodcastCourse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CF14421845A112B3B890E7D /* Pods_PodcastCourse.framework */; };
 		730CCBA820627F2C007E866A /* PlayerDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 730CCBA720627F2C007E866A /* PlayerDetailView.xib */; };
 		730CCBAB20628407007E866A /* PlayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730CCBAA20628407007E866A /* PlayerDetailView.swift */; };
+		7311E1C4206A6F5200560316 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7311E1C3206A6F5200560316 /* UserDefaultsExtensions.swift */; };
 		73120E69205C1F77003E1C1E /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73120E68205C1F77003E1C1E /* Episode.swift */; };
 		73291915204EE4D90024BB42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73291914204EE4D90024BB42 /* AppDelegate.swift */; };
 		73291917204EE4D90024BB42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73291916204EE4D90024BB42 /* ViewController.swift */; };
@@ -58,6 +59,7 @@
 		5CF14421845A112B3B890E7D /* Pods_PodcastCourse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodcastCourse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		730CCBA720627F2C007E866A /* PlayerDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerDetailView.xib; sourceTree = "<group>"; };
 		730CCBAA20628407007E866A /* PlayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailView.swift; sourceTree = "<group>"; };
+		7311E1C3206A6F5200560316 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		73120E68205C1F77003E1C1E /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		73291911204EE4D90024BB42 /* PodcastCourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastCourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73291914204EE4D90024BB42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,16 +107,9 @@
 				73E40AE72060177C00AB0413 /* RSSFeed.swift */,
 				73A3F7242063DBED0009CDFB /* CMTimeExtension.swift */,
 				384BB4602067CF2700CC6B54 /* UIApplication.swift */,
+				7311E1C3206A6F5200560316 /* UserDefaultsExtensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		384BB466206859C400CC6B54 /* Favorites */ = {
-			isa = PBXGroup;
-			children = (
-				384BB462206840B200CC6B54 /* FavoritesController.swift */,
-			);
-			path = Favorites;
 			sourceTree = "<group>";
 		};
 		384BB4692068674400CC6B54 /* Favorites */ = {
@@ -224,7 +219,7 @@
 				73291926204EE5280024BB42 /* MainTabBarController.swift */,
 				7355CEE3205009CF00198C3E /* SearchViewController.swift */,
 				73AC98C72059532800DC162E /* EpisodesViewController.swift */,
-				384BB466206859C400CC6B54 /* Favorites */,
+				384BB462206840B200CC6B54 /* FavoritesController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -417,6 +412,7 @@
 				38B039692050BF5A0040E0C1 /* SearchResult.swift in Sources */,
 				38EB47402066B63D00F2F6E1 /* MiniPlayerView.swift in Sources */,
 				73A3F7252063DBED0009CDFB /* CMTimeExtension.swift in Sources */,
+				7311E1C4206A6F5200560316 /* UserDefaultsExtensions.swift in Sources */,
 				387FBFDA20555DD300312985 /* ApiService.swift in Sources */,
 				73E40AE6205FDC5E00AB0413 /* StringExtension.swift in Sources */,
 				7355CEE820500A2A00198C3E /* Podcast.swift in Sources */,
@@ -558,6 +554,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7VX4BB4FYN;
 				INFOPLIST_FILE = PodcastCourse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = luizhammerli.PodcastCourse;
@@ -573,6 +570,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7VX4BB4FYN;
 				INFOPLIST_FILE = PodcastCourse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = luizhammerli.PodcastCourse;
