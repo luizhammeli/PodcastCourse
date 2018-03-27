@@ -19,6 +19,5 @@ extension UserDefaults{
     static func saveFavorites(_ podcasts: [Podcast]){
         let data = NSKeyedArchiver.archivedData(withRootObject: podcasts)
         UserDefaults.standard.set(data, forKey: UserDefaults.favoriteObjectKey)
-        NotificationCenter.default.post(name: EpisodesViewController.updateFavoritesController, object: nil)
     }
 }

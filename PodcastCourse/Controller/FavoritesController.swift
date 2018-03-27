@@ -21,6 +21,7 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
         addGestureRecognizer()
         favorites = UserDefaults.fetchFavorites()
         NotificationCenter.default.addObserver(self, selector: #selector(updateFavoritesController), name: EpisodesViewController.updateFavoritesController , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCollectionViewData), name: EpisodesViewController.updateFavoritesCollectionViewData , object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +76,10 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
     @objc func updateFavoritesController(){
         self.navigationController?.tabBarItem.badgeColor = .purple
         self.navigationController?.tabBarItem.badgeValue = "New"
+        updateCollectionViewData()
+    }
+    
+    @objc func updateCollectionViewData(){
         favorites = UserDefaults.fetchFavorites()
         collectionView?.reloadData()
     }

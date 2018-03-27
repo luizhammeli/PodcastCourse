@@ -32,9 +32,8 @@ class ApiService{
     }
     
     func fetchEpisodes(podcast: Podcast?, completionHandler: @escaping (([Episode])->Void)){
-        guard let stringUrl = podcast?.feedUrl else {return}
-        let editedSring = stringUrl.checkHttpsString()
-        guard let url = URL(string: editedSring) else {return}
+        guard let stringUrl = podcast?.feedUrl else {return}        
+        guard let url = URL(string: stringUrl) else {return}
         var episodes = [Episode]()
         
         DispatchQueue.global(qos: .background).async {

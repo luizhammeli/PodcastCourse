@@ -15,6 +15,7 @@ class EpisodesViewController: UITableViewController {
     let cellID = "cellID"
     var episodes = [Episode]()
     static let updateFavoritesController = NSNotification.Name(rawValue: "updateFavoritesController")
+    static let updateFavoritesCollectionViewData = NSNotification.Name(rawValue: "updateFavoritesCollectionViewData")
     var isFavorite = false
     
     var podcast: Podcast?{
@@ -47,21 +48,32 @@ class EpisodesViewController: UITableViewController {
     }
     
     @objc func handleSaveButton(){
-        var podcasts = UserDefaults.fetchFavorites()
+        let podcasts = UserDefaults.fetchFavorites()
         if (!isFavorite){
-            guard let podcast = podcast else {return}
-            podcasts.append(podcast)
-            UserDefaults.saveFavorites(podcasts)
-            self.navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "heart")
+            saveFavorite(podcasts)
             return
         }
-        
+        removeFavorite(podcasts)
+    }
+    
+    func saveFavorite(_ podcasts: [Podcast]){
+        var podcasts = podcasts
+        guard let podcast = podcast else {return}
+        podcasts.append(podcast)
+        UserDefaults.saveFavorites(podcasts)
+        self.navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "heart")
+        NotificationCenter.default.post(name: EpisodesViewController.updateFavoritesController, object: nil)
+    }
+    
+    func removeFavorite(_ podcasts: [Podcast]){
+        var podcasts = podcasts
         for(index, podcast) in podcasts.enumerated(){
             if (podcast.artistName == self.podcast?.artistName && podcast.trackName == self.podcast?.trackName){
                 self.navigationItem.rightBarButtonItem?.image = nil
                 self.navigationItem.rightBarButtonItem?.title = "Favorite"
                 podcasts.remove(at: index)
                 UserDefaults.saveFavorites(podcasts)
+                NotificationCenter.default.post(name: EpisodesViewController.updateFavoritesCollectionViewData, object: nil)
                 break
             }
         }
