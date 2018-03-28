@@ -132,4 +132,12 @@ class EpisodesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
          return episodes.isEmpty ? 200 : 0
     }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let downloadAction = UITableViewRowAction(style: .normal, title: "Download") { (action, indexPath) in
+            UserDefaults.standard.downloadEpisode(episode: self.episodes[indexPath.item])
+        }
+        
+        return [downloadAction]
+    }
 }
