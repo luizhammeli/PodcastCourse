@@ -46,5 +46,10 @@ class DownloadsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 132
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        UIApplication.getMainTabBar()?.playerDetailView.episode = self.episodes[indexPath.item]
+        UIApplication.getMainTabBar()?.maximizedPlayerDetailView()
+    }
 }
 
