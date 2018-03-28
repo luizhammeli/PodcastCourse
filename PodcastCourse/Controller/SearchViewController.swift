@@ -98,4 +98,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         self.podcasts.removeAll()
         self.tableView.reloadData()
     }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {        
+        self.searchController.searchBar.endEditing(true)
+    }
 }
