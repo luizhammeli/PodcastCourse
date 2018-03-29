@@ -50,17 +50,24 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uCm-eS-0Ub">
+                        <rect key="frame" x="64" y="56" width="37" height="37"/>
+                        <color key="color" white="0.4045410156" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Nfr-52-IzM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="31K-5B-vBW"/>
                     <constraint firstItem="Nfr-52-IzM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3o2-iL-fur"/>
                     <constraint firstItem="h8p-Fh-V0U" firstAttribute="leading" secondItem="Nfr-52-IzM" secondAttribute="trailing" constant="16" id="EQl-YP-Oqe"/>
+                    <constraint firstItem="uCm-eS-0Ub" firstAttribute="centerY" secondItem="Nfr-52-IzM" secondAttribute="centerY" id="MCm-h4-K4F"/>
                     <constraint firstAttribute="trailingMargin" secondItem="h8p-Fh-V0U" secondAttribute="trailing" id="OjG-g4-YNU"/>
                     <constraint firstItem="h8p-Fh-V0U" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UYh-4e-ztI"/>
+                    <constraint firstItem="uCm-eS-0Ub" firstAttribute="centerX" secondItem="Nfr-52-IzM" secondAttribute="centerX" id="xED-Ok-317"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="activityIndicator" destination="uCm-eS-0Ub" id="yTh-vm-1P9"/>
                 <outlet property="descriptionLabel" destination="eYB-oH-Ref" id="RcG-Nx-J0Y"/>
                 <outlet property="episodeImageView" destination="Nfr-52-IzM" id="UQC-oX-aTm"/>
                 <outlet property="pubDateLabel" destination="AbT-8u-t86" id="Tcf-ML-JIe"/>

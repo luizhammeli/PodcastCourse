@@ -15,6 +15,24 @@ class ApiService{
     static let shared = ApiService()
     let baseURL = "https://itunes.apple.com/search"
     
+    func downloadEpisode(_ episode: Episode){
+        let newEpisode = episode
+        let downloadRequest = DownloadRequest.suggestedDownloadDestination()
+        var episodes = UserDefaults.standard.fetchDownloadedEpisodes()
+        Alamofire.download(episode.streamUrl, to: downloadRequest).downloadProgress { (progress) in
+            print(progress.fractionCompleted)
+            }.response { (response) in
+                if(response.response?.statusCode == 200){
+                   guard let index =  episodes.index(where: { (episode) -> Bool in return (episode.author == newEpisode.author && episode.title == newEpisode.title)
+                   }) else {return}
+                    guard let url = response.destinationURL?.absoluteString else {return}
+                    episodes[index].fileUrl = url
+                    UserDefaults.standard.saveAllEpisodes(episodes: episodes)
+                    NotificationCenter.default.post(name: DownloadsViewController.finishDownloadsViewControllerName, object: nil)
+                }
+        }
+    }
+    
     func fetchPodcasts(_ searchText: String, completionHandler: @escaping ([Podcast])->Void){
         
         let parameters = ["entity":"podcast", "term": searchText]

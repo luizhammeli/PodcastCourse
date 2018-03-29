@@ -15,7 +15,16 @@ extension UserDefaults{
     func downloadEpisode(episode: Episode){
         do{
             var episodes = fetchDownloadedEpisodes()
-            episodes.append(episode)
+            episodes.insert(episode, at: episodes.count)
+            let data = try JSONEncoder().encode(episodes)
+            UserDefaults.standard.set(data, forKey: UserDefaults.downloadEpisodeObjectKey)
+        }catch let err{
+            print(err)
+        }
+    }
+    
+    func saveAllEpisodes(episodes: [Episode]){
+        do{
             let data = try JSONEncoder().encode(episodes)
             UserDefaults.standard.set(data, forKey: UserDefaults.downloadEpisodeObjectKey)
         }catch let err{

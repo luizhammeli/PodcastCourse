@@ -54,7 +54,18 @@ class PlayerDetailView: UIView {
     
     fileprivate func playEpisode(){
         guard let episode = episode else {return}
-        guard let url = URL(string: episode.streamUrl) else {return}
+        if(!episode.fileUrl.isEmpty){
+            guard let url = URL(string: episode.fileUrl) else {return}
+            guard var location = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+            location.appendPathComponent(url.lastPathComponent)
+            playAudio(location)
+        }else{
+            guard let url = URL(string: episode.streamUrl) else {return}
+            playAudio(url)
+        }
+    }
+    
+    func playAudio(_ url: URL){
         playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         let avItem = AVPlayerItem(url: url)
         player.replaceCurrentItem(with: avItem)

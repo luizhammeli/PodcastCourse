@@ -136,6 +136,8 @@ class EpisodesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let downloadAction = UITableViewRowAction(style: .normal, title: "Download") { (action, indexPath) in
             UserDefaults.standard.downloadEpisode(episode: self.episodes[indexPath.item])
+            NotificationCenter.default.post(name: DownloadsViewController.updateDownloadsViewControllerName, object: nil)
+            ApiService.shared.downloadEpisode(self.episodes[indexPath.item])
         }
         
         return [downloadAction]
