@@ -104,12 +104,16 @@ class DownloadsViewController: UITableViewController {
             UIApplication.getMainTabBar()?.maximizedPlayerDetailView()
             return
         }
-        showAlertController()
+        showAlertController(episode)
     }
     
-    fileprivate func showAlertController(){
+    fileprivate func showAlertController(_ episode: Episode){
         let alertController = UIAlertController(title: "File URL not found", message: "Cannot find local file, play using stream url instead", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+             UIApplication.getMainTabBar()?.playerDetailView.episode = episode
+            UIApplication.getMainTabBar()?.maximizedPlayerDetailView()
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     

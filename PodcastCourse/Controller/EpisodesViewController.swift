@@ -118,7 +118,7 @@ class EpisodesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         guard let miniDisplayIsVisible = UIApplication.getMainTabBar()?.miniDisplayIsVisible else {return 0}
-        return (episodes.count > 2 && miniDisplayIsVisible) ? 64 : 0
+        return 64
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

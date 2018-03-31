@@ -70,7 +70,7 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return (favorites.count > 4 && (UIApplication.getMainTabBar()?.miniDisplayIsVisible)!) ? CGSize(width: self.view.frame.width, height: 64) : CGSize(width: self.view.frame.width, height: 0)
+        return CGSize(width: self.view.frame.width, height: 64)
     }
     
     @objc func updateFavoritesController(){
