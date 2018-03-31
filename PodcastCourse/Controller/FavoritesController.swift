@@ -20,8 +20,8 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
         setUpColectionView()
         addGestureRecognizer()
         favorites = UserDefaults.fetchFavorites()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateFavoritesController), name: EpisodesViewController.updateFavoritesController , object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateCollectionViewData), name: EpisodesViewController.updateFavoritesCollectionViewData , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFavoritesController), name: .updateFavoritesController , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCollectionViewData), name: .updateFavoritesCollectionViewData , object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -25,12 +25,18 @@ extension UserDefaults{
     
     func saveAllEpisodes(episodes: [Episode]){
         do{
+            if(episodes.isEmpty){
+                UserDefaults.standard.removeObject(forKey: UserDefaults.downloadEpisodeObjectKey)
+                return
+            }
+            
             let data = try JSONEncoder().encode(episodes)
             UserDefaults.standard.set(data, forKey: UserDefaults.downloadEpisodeObjectKey)
         }catch let err{
             print(err)
         }
     }
+    
     
     func fetchDownloadedEpisodes()->[Episode]{
         do{

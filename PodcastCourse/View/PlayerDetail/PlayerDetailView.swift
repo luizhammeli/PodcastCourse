@@ -65,7 +65,7 @@ class PlayerDetailView: UIView {
         }
     }
     
-    func playAudio(_ url: URL){
+    fileprivate func playAudio(_ url: URL){
         playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         let avItem = AVPlayerItem(url: url)
         player.replaceCurrentItem(with: avItem)

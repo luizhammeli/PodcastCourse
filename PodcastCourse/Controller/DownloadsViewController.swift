@@ -12,20 +12,21 @@ class DownloadsViewController: UITableViewController {
     
     let cellID = "cellID"
     var episodes = [Episode]()
-    static let updateDownloadsViewControllerName = NSNotification.Name(rawValue: "updateDownloadsViewControllerName")
-    static let finishDownloadsViewControllerName = NSNotification.Name(rawValue: "finishDownloadsViewControllerName")
-    var showActivityIndicator = false
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         setUpTableView()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadsViewControllerData), name: DownloadsViewController.updateDownloadsViewControllerName , object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(finishDownloadsViewController), name: DownloadsViewController.finishDownloadsViewControllerName, object: nil)
-        
         episodes = UserDefaults.standard.fetchDownloadedEpisodes()
         self.tableView.reloadData()
-
+        setUpNotificationCenter()
+    }
+    
+    func setUpNotificationCenter(){
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadsViewControllerData), name: .updateDownloadsViewControllerName , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(finishDownloadsViewController), name: .finishDownloadsViewControllerName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadProgressLabel), name: .updateDownloadProgressLabelName, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,17 +34,36 @@ class DownloadsViewController: UITableViewController {
        self.navigationController?.tabBarItem.badgeValue = nil
     }
     
+    @objc func updateDownloadProgressLabel(notification: Notification){
+        guard let userInfo = notification.userInfo else {return}
+        guard let progress = userInfo["progress"] as? Double, let episodeTitle = userInfo["title"] as? String else {return}
+        
+        guard let cell = getCellByTitle(episodeTitle) else {return}
+        
+        cell.progressLabel.isHidden = false
+        cell.progressLabel.text = "\(Int(progress*100))%"                
+    }
+    
+    func getCellByTitle(_ title: String)-> EpisodeTableViewCell?{
+        guard let index = self.episodes.index(where: { return $0.title == title }) else {return nil}
+        guard let cell = self.tableView.cellForRow(at: IndexPath(item: index, section: 0)) as? EpisodeTableViewCell else {return nil}
+        
+        return cell
+    }
+    
     @objc func updateDownloadsViewControllerData(){
         episodes = UserDefaults.standard.fetchDownloadedEpisodes()
         self.navigationController?.tabBarItem.badgeValue  = "New"
         self.navigationController?.tabBarItem.badgeColor = .purple
-        showActivityIndicator = true
         self.tableView.reloadData()
     }
     
-    @objc func finishDownloadsViewController(){
-        episodes = UserDefaults.standard.fetchDownloadedEpisodes() 
-        showActivityIndicator = false
+    @objc func finishDownloadsViewController(notification: Notification){
+        guard let userInfo = notification.userInfo else {return}
+        guard let episodeTitle = userInfo["title"] as? String else {return}
+        guard let cell = getCellByTitle(episodeTitle) else {return}
+        cell.progressLabel.isHidden = true
+        episodes = UserDefaults.standard.fetchDownloadedEpisodes()
         self.tableView.reloadData()
     }
     
@@ -61,10 +81,6 @@ class DownloadsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! EpisodeTableViewCell
         cell.episode = episodes[indexPath.item]
-        cell.showActivityIndicator(true)
-        if(showActivityIndicator && episodes[indexPath.item].fileUrl.isEmpty){
-            cell.showActivityIndicator(!showActivityIndicator)
-        }
         
         return cell
     }
@@ -82,8 +98,29 @@ class DownloadsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UIApplication.getMainTabBar()?.playerDetailView.episode = self.episodes[indexPath.item]
-        UIApplication.getMainTabBar()?.maximizedPlayerDetailView()
+        let episode = self.episodes[indexPath.item]
+        if(!episode.fileUrl.isEmpty){
+            UIApplication.getMainTabBar()?.playerDetailView.episode = episode
+            UIApplication.getMainTabBar()?.maximizedPlayerDetailView()
+            return
+        }
+        showAlertController()
+    }
+    
+    fileprivate func showAlertController(){
+        let alertController = UIAlertController(title: "File URL not found", message: "Cannot find local file, play using stream url instead", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let removeAction = UITableViewRowAction(style: .destructive, title: "Remove") { (action, index) in
+            self.episodes.remove(at: indexPath.item)
+            self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            UserDefaults.standard.saveAllEpisodes(episodes: self.episodes)
+        }
+        
+        return [removeAction]
     }
 }
 

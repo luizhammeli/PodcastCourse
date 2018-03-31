@@ -23,10 +23,7 @@ class MiniPlayerView: UIView {
     @IBOutlet weak var episodeTitleLabel: UILabel!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var fastForwardButton: UIButton!
-    @IBOutlet weak var mainContainerView: UIView!
-    
-    static let playPauseButtonNotificationName = NSNotification.Name(rawValue: "playPauseButton")
-    static let fastForwardNotificationName = NSNotification.Name(rawValue: "fastForward")
+    @IBOutlet weak var mainContainerView: UIView!    
     
     static func loadMiniPlayerViewNib()-> MiniPlayerView{
         return Bundle.main.loadNibNamed("MiniPlayerView", owner: self, options: nil)?.first as! MiniPlayerView
@@ -46,11 +43,11 @@ class MiniPlayerView: UIView {
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         }
         
-        NotificationCenter.default.post(name: MiniPlayerView.playPauseButtonNotificationName, object: nil)
+        NotificationCenter.default.post(name: .playPauseButtonNotificationName, object: nil)
     }
     
     @IBAction func handlerFastForwardButton(_ sender: Any) {
-        NotificationCenter.default.post(name: MiniPlayerView.fastForwardNotificationName , object: nil)
+        NotificationCenter.default.post(name: .fastForwardNotificationName , object: nil)
     }
     
     func setPlayButtonImage(_ image: UIImage){

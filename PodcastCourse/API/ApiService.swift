@@ -20,7 +20,7 @@ class ApiService{
         let downloadRequest = DownloadRequest.suggestedDownloadDestination()
         var episodes = UserDefaults.standard.fetchDownloadedEpisodes()
         Alamofire.download(episode.streamUrl, to: downloadRequest).downloadProgress { (progress) in
-            print(progress.fractionCompleted)
+            NotificationCenter.default.post(name: .updateDownloadProgressLabelName, object: self, userInfo: ["title": episode.title, "progress": progress.fractionCompleted])
             }.response { (response) in
                 if(response.response?.statusCode == 200){
                    guard let index =  episodes.index(where: { (episode) -> Bool in return (episode.author == newEpisode.author && episode.title == newEpisode.title)
@@ -28,7 +28,7 @@ class ApiService{
                     guard let url = response.destinationURL?.absoluteString else {return}
                     episodes[index].fileUrl = url
                     UserDefaults.standard.saveAllEpisodes(episodes: episodes)
-                    NotificationCenter.default.post(name: DownloadsViewController.finishDownloadsViewControllerName, object: nil)
+                    NotificationCenter.default.post(name: .finishDownloadsViewControllerName, object: self, userInfo: ["title": episode.title])
                 }
         }
     }

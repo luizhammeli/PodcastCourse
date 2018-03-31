@@ -14,8 +14,7 @@ class EpisodesViewController: UITableViewController {
     
     let cellID = "cellID"
     var episodes = [Episode]()
-    static let updateFavoritesController = NSNotification.Name(rawValue: "updateFavoritesController")
-    static let updateFavoritesCollectionViewData = NSNotification.Name(rawValue: "updateFavoritesCollectionViewData")
+    
     var isFavorite = false
     
     var podcast: Podcast?{
@@ -62,7 +61,7 @@ class EpisodesViewController: UITableViewController {
         podcasts.append(podcast)
         UserDefaults.saveFavorites(podcasts)
         self.navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "heart")
-        NotificationCenter.default.post(name: EpisodesViewController.updateFavoritesController, object: nil)
+        NotificationCenter.default.post(name: .updateFavoritesController, object: nil)
     }
     
     func removeFavorite(_ podcasts: [Podcast]){
@@ -73,7 +72,7 @@ class EpisodesViewController: UITableViewController {
                 self.navigationItem.rightBarButtonItem?.title = "Favorite"
                 podcasts.remove(at: index)
                 UserDefaults.saveFavorites(podcasts)
-                NotificationCenter.default.post(name: EpisodesViewController.updateFavoritesCollectionViewData, object: nil)
+                NotificationCenter.default.post(name: .updateFavoritesCollectionViewData, object: nil)
                 break
             }
         }
@@ -136,7 +135,7 @@ class EpisodesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let downloadAction = UITableViewRowAction(style: .normal, title: "Download") { (action, indexPath) in
             UserDefaults.standard.downloadEpisode(episode: self.episodes[indexPath.item])
-            NotificationCenter.default.post(name: DownloadsViewController.updateDownloadsViewControllerName, object: nil)
+            NotificationCenter.default.post(name: .updateDownloadsViewControllerName, object: nil)
             ApiService.shared.downloadEpisode(self.episodes[indexPath.item])
         }
         

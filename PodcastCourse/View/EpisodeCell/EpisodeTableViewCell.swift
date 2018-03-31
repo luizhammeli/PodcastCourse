@@ -24,7 +24,7 @@ class EpisodeTableViewCell: UITableViewCell {
     }
     
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var episodeImageView: UIImageView!    
     @IBOutlet weak var pubDateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!{
@@ -42,15 +42,6 @@ class EpisodeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         episodeImageView.layer.cornerRadius = 4
         episodeImageView.layer.masksToBounds = true
-        showActivityIndicator(true)
-    }
-    
-    func showActivityIndicator(_ isHidden: Bool){
-        activityIndicator.isHidden = isHidden
-        if(isHidden){
-            activityIndicator.stopAnimating()
-            return
-        }
-        activityIndicator.startAnimating()
+        self.progressLabel.isHidden = true
     }
 }
