@@ -88,8 +88,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         return UIView()
     }
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        guard let miniDisplayIsVisible = UIApplication.getMainTabBar()?.miniDisplayIsVisible else {return 0}
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {        
         return 64
     }
     

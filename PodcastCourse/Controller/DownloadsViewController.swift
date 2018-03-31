@@ -60,11 +60,12 @@ class DownloadsViewController: UITableViewController {
     
     @objc func finishDownloadsViewController(notification: Notification){
         guard let userInfo = notification.userInfo else {return}
-        guard let episodeTitle = userInfo["title"] as? String else {return}
+        guard let episodeTitle = userInfo["title"] as? String, let fileUrl = userInfo["fileUrl"] as? String else {return}
         guard let cell = getCellByTitle(episodeTitle) else {return}
+        guard let index = episodes.index(where: {$0.title == episodeTitle}) else {return}
+        episodes[index].fileUrl = fileUrl
         cell.progressLabel.isHidden = true
-        episodes = UserDefaults.standard.fetchDownloadedEpisodes()
-        self.tableView.reloadData()
+        UserDefaults.standard.saveAllEpisodes(episodes: episodes)
     }
     
     //MARK:- Setup

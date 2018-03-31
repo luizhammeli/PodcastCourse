@@ -12,23 +12,19 @@ import FeedKit
 
 class ApiService{
     
+    typealias completedDownloadTuple = (fileUrl: String, title: String)
+    
     static let shared = ApiService()
     let baseURL = "https://itunes.apple.com/search"
     
-    func downloadEpisode(_ episode: Episode){
-        let newEpisode = episode
+    func downloadEpisode(_ episode: Episode){        
         let downloadRequest = DownloadRequest.suggestedDownloadDestination()
-        var episodes = UserDefaults.standard.fetchDownloadedEpisodes()
         Alamofire.download(episode.streamUrl, to: downloadRequest).downloadProgress { (progress) in
             NotificationCenter.default.post(name: .updateDownloadProgressLabelName, object: self, userInfo: ["title": episode.title, "progress": progress.fractionCompleted])
             }.response { (response) in
                 if(response.response?.statusCode == 200){
-                   guard let index =  episodes.index(where: { (episode) -> Bool in return (episode.author == newEpisode.author && episode.title == newEpisode.title)
-                   }) else {return}
                     guard let url = response.destinationURL?.absoluteString else {return}
-                    episodes[index].fileUrl = url
-                    UserDefaults.standard.saveAllEpisodes(episodes: episodes)
-                    NotificationCenter.default.post(name: .finishDownloadsViewControllerName, object: self, userInfo: ["title": episode.title])
+                    NotificationCenter.default.post(name: .finishDownloadsViewControllerName, object: self, userInfo: ["title": episode.title, "fileUrl": url])
                 }
         }
     }
