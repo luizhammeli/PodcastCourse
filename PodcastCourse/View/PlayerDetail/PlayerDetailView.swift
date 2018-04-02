@@ -79,6 +79,8 @@ class PlayerDetailView: UIView {
         setUpPLayerView()
         addFeedNotification()
         addGesturesRecognizer()
+        setUpAudioSession()
+        setUpRemoteControl()
     }
     
     func addPeriodicTimeObserver(){
@@ -161,10 +163,12 @@ class PlayerDetailView: UIView {
         if (player.timeControlStatus == .paused){
             enlargeEpisodeImageView(enlarge: true)
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            miniPlayerView.setPlayButtonImage(#imageLiteral(resourceName: "pause"))
             player.play()
         }else{
             playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             enlargeEpisodeImageView(enlarge: false)
+            miniPlayerView.setPlayButtonImage(#imageLiteral(resourceName: "play"))
             player.pause()
         }
     }

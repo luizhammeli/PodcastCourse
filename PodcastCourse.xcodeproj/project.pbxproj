@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049A8F6E20711D4A00E96613 /* PlayerDetailBackgroundAudioModeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049A8F6D20711D4A00E96613 /* PlayerDetailBackgroundAudioModeExtensions.swift */; };
 		38279B59205D906D008C80CC /* EpisodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38279B57205D906D008C80CC /* EpisodeTableViewCell.swift */; };
 		38279B5A205D906D008C80CC /* EpisodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38279B58205D906D008C80CC /* EpisodeTableViewCell.xib */; };
 		38279B5D205D9ADD008C80CC /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38279B5C205D9ADD008C80CC /* DateExtension.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		049A8F6D20711D4A00E96613 /* PlayerDetailBackgroundAudioModeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailBackgroundAudioModeExtensions.swift; sourceTree = "<group>"; };
 		334B7BF5B808073635DDF30E /* Pods-PodcastCourse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastCourse.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastCourse/Pods-PodcastCourse.debug.xcconfig"; sourceTree = "<group>"; };
 		38279B57205D906D008C80CC /* EpisodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTableViewCell.swift; sourceTree = "<group>"; };
 		38279B58205D906D008C80CC /* EpisodeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpisodeTableViewCell.xib; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			children = (
 				38D472FA2066F009001F77C2 /* PlayerDetailNotificationCenterExtensions.swift */,
 				38D472FC2066F07D001F77C2 /* PlayerDetailGestureRecognizerExtensions.swift */,
+				049A8F6D20711D4A00E96613 /* PlayerDetailBackgroundAudioModeExtensions.swift */,
 			);
 			path = PlayerDetailExtensions;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				38D472FD2066F07D001F77C2 /* PlayerDetailGestureRecognizerExtensions.swift in Sources */,
 				38B039692050BF5A0040E0C1 /* SearchResult.swift in Sources */,
 				38EB47402066B63D00F2F6E1 /* MiniPlayerView.swift in Sources */,
+				049A8F6E20711D4A00E96613 /* PlayerDetailBackgroundAudioModeExtensions.swift in Sources */,
 				73A3F7252063DBED0009CDFB /* CMTimeExtension.swift in Sources */,
 				7311E1C4206A6F5200560316 /* UserDefaultsExtensions.swift in Sources */,
 				387FBFDA20555DD300312985 /* ApiService.swift in Sources */,
