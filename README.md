@@ -11,6 +11,8 @@ O Podcast é um aplicativo que utiliza a API de busca de Podcasts disponíveis n
 <img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43496867-fb45627c-9515-11e8-989a-fb65193d81da.png" />
 <img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43496868-fb6975f4-9515-11e8-9c5a-2fdd7263594c.png" />
 <img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43496869-fb9485c8-9515-11e8-9ea5-51bf116b091f.png" />
+<img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43497020-accc0e38-9516-11e8-8e61-33605374e36d.png" />
+ 
 
 ## Arquitetura do Projeto
  - MVC
