@@ -5,12 +5,12 @@ O Podcast é um aplicativo que utiliza a API de busca de Podcasts disponíveis n
 ## Implementação
 
 <p float="left">
-<img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43296017-2d65447a-911f-11e8-98e9-e28a517dcb3b.png" />
-<img height="35%" width="35%" vspace="20" hspace="20" src="(https://user-images.githubusercontent.com/12848020/43296019-2fc02b7c-911f-11e8-8eff-f2943c01de02.png" />
-<img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43296021-303f4574-911f-11e8-8b13-afff3b3d2079.png" />
-<img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43296023-31d14234-911f-11e8-8b1b-5806e8e07824.png" />
-<img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43296024-32ac73b8-911f-11e8-9769-e7b1efea9d8a.png" />
-<img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43296025-3391d4b2-911f-11e8-945b-37f3d4a09502.png" />
+<img height="35%" width="35%" vspace="20" hspace="20" src="(https://user-images.githubusercontent.com/12848020/43496864-fac9533a-9515-11e8-92e7-b02bb3ff7043.png" />
+<img height="35%" width="35%" vspace="20" hspace="20" src="(https://user-images.githubusercontent.com/12848020/43496865-faf6a39e-9515-11e8-81c5-72be014aa1aa.png" />
+<img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43496866-fb20d6fa-9515-11e8-9680-d1280f33a83a.png" />
+<img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43496867-fb45627c-9515-11e8-989a-fb65193d81da.png" />
+<img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43496868-fb6975f4-9515-11e8-9c5a-2fdd7263594c.png" />
+<img height="35%" width="35%" vspace="20" hspace="20" src="https://user-images.githubusercontent.com/12848020/43496869-fb9485c8-9515-11e8-9ea5-51bf116b091f.png" />
 
 ## Arquitetura do Projeto
  - MVC
